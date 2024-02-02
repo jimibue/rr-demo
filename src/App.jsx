@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { Link, Routes, Route } from "react-router-dom";
+import About from './pages/About'
+import Home from './pages/Home'
+import Contact from './pages/Contact'
+import NotFoundPage from "./pages/NotFoundPage";
+import Users from "./pages/Users";
+import User from "./pages/User";
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <div id="navbar">
+        <Link to="/">home</Link>
+        <Link to="/about">about</Link>
+        <Link to="/contact">contact</Link>
+        <Link to="/users">users</Link>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div id="container">
+        <Routes>
+          <Route path='/' element={<Home />}/>
+          <Route path='/about' element={<About />}/>
+          <Route path='/contact' element={<Contact />}/>
+          <Route path='/users' element={<Users />}/>
+          <Route path='/users/:id' element={<User />}/>
+
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
